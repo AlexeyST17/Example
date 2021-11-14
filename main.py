@@ -34,7 +34,7 @@ def get_stats_for3days(cust: list, prod: list, dates: list, price: list):
                     # если уже следующий час
 
                     countOfcustPerHour += 1
-                    countOfpurchase += 1
+                    countOfpurchase += 1    # если под покупкой понимать не то, что купил, а сколько, то нужно написать += prod
                     totalProfitPerHour += int(price[i])
 
                     totalCust.append(countOfcustPerHour)
@@ -49,7 +49,7 @@ def get_stats_for3days(cust: list, prod: list, dates: list, price: list):
                     # если еще тот же час
 
                     countOfcustPerHour += 1
-                    countOfpurchase += 1
+                    countOfpurchase += 1    # если под покупкой понимать не то, что купил, а сколько, то нужно написать += prod
                     totalProfitPerHour += int(price[i])
 
             else:   # завершение цикла, когда начинаеться 4-ый день
