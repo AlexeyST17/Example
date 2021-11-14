@@ -30,11 +30,12 @@ def get_stats_for3days(cust: list, prod: list, dates: list, price: list):
         for i in range(0, len(dates) - 1, 1):
             if dates[i].day - dates[0].day < 3:    # ограничение в 3 дня
                 if ((dates[i + 1].day == dates[i].day) and (dates[i + 1].hour - dates[i].hour) >= 1 or \
-                        (dates[i + 1].day - dates[i].day) == 1 and (dates[i + 1].hour - dates[i].hour + 24) >= 1):
+                        (dates[i + 1].day - dates[i].day) == 1 and (dates[i + 1].hour - dates[i].hour + 24) >= 1\
+                        or (dates[i + 1].day - dates[i].day) == 2 and (dates[i + 1].hour - dates[i].hour + 24) >= 1):
                     # если уже следующий час
 
                     countOfcustPerHour += 1
-                    countOfpurchase += 1    # если под покупкой понимать не то, что купил, а сколько, то нужно написать += prod
+                    countOfpurchase += 1
                     totalProfitPerHour += int(price[i])
 
                     totalCust.append(countOfcustPerHour)
@@ -45,11 +46,12 @@ def get_stats_for3days(cust: list, prod: list, dates: list, price: list):
                     countOfcustPerHour = countOfpurchase = totalProfitPerHour = 0
 
                 elif ((dates[i + 1].day == dates[i].day) and (dates[i + 1].hour - dates[i].hour) < 1 or \
-                      (dates[i + 1].day - dates[i].day) == 1 and (dates[i + 1].hour - dates[i].hour + 24) < 1):
+                      (dates[i + 1].day - dates[i].day) == 1 and (dates[i + 1].hour - dates[i].hour + 24) < 1\
+                      or (dates[i + 1].day - dates[i].day) == 2 and (dates[i + 1].hour - dates[i].hour + 24) < 1):
                     # если еще тот же час
 
                     countOfcustPerHour += 1
-                    countOfpurchase += 1    # если под покупкой понимать не то, что купил, а сколько, то нужно написать += prod
+                    countOfpurchase += 1
                     totalProfitPerHour += int(price[i])
 
             else:   # завершение цикла, когда начинаеться 4-ый день
